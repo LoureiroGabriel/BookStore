@@ -35,6 +35,13 @@ const items = [
   }
 ]
 
-app.createOrder(items, users[0])
+items.forEach(({ product, quantity }) => {
+  if (quantity > product.inStock) {
+    console.error(`Erro: Quantidade insuficiente em estoque para o livro "${product.title}".`)
+    process.exit(1); 
+  }
+});
+
+app.createOrder(items, users[0]);
 
 app.showDatabase()
